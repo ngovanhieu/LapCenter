@@ -1,0 +1,42 @@
+.home-container {
+    .product {
+        flex-wrap: wrap;
+        flex: start;
+        display: flex;
+        padding-top: 80px;
+
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 25px;
+        margin: 10px auto;
+        min-width: 250px;
+        max-width: 250px;
+        height: 370px;
+        background-color: #fff;
+        box-shadow: 5px 5px 25px rgb(184, 183, 183);
+        
+        .image {
+          width: 200px !important;
+          height: 160px !important;
+        }
+      
+        .name {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .btn-success {
+            background-color: rgb(41, 171, 5);
+            color: beige;
+            padding: 10px 0;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+      }
+    }
+}
