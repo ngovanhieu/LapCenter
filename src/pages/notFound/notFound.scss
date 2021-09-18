@@ -1,0 +1,22 @@
+.not-found-container {
+    text-align: center;
+    padding-top: 80px;
+
+    h1 {
+        font-size: 150px;
+    }
+
+    p {
+        font-size: 30px;
+    }
+
+    span {
+        font-size: 18px;
+    }
+
+    .boxShadow {
+        width: 300px;
+        margin: 20px auto;
+        box-shadow: 10px 50px 55px 5px rgb(49, 49, 49);
+    }
+}
