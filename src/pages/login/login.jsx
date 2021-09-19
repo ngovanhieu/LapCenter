@@ -5,8 +5,9 @@ import './login.scss'
 // import { useHistory} from "react-router-dom";
 import {useHistory} from "react-router-dom"
 
-
 const account = { username: 'admin', password: 'admin' };
+
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -25,12 +26,12 @@ const Login = () => {
   const onLogin = () => {
     console.log(username, password);
     if(username === account.username && password === account.password){
-        console.log('dang nhap thanh cong');
+        console.log('Đăng nhập thành công');
         // alert('Dang nhap thanh cong')
         history.push('/');
     }else{
-        console.log('dang nhap that bai');
-        alert('moi ban nhap lai, ban nhap sai roi')
+        console.log('Đăng nhập thất bại');
+        alert('Tên đăng nhập hoặc mật khẩu không đúng vui lòng thử lại !')
     }
   }
 
