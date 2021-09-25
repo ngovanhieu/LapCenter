@@ -5,6 +5,7 @@ import './login.scss'
 // import { useHistory} from "react-router-dom";
 import {useHistory} from "react-router-dom"
 
+const axios = require("axios");
 const account = { username: 'admin', password: 'admin' };
 
 
@@ -24,15 +25,18 @@ const Login = () => {
   }
 
   const onLogin = () => {
-    console.log(username, password);
-    if(username === account.username && password === account.password){
-        console.log('Đăng nhập thành công');
-        // alert('Dang nhap thanh cong')
-        history.push('/');
-    }else{
-        console.log('Đăng nhập thất bại');
-        alert('Tên đăng nhập hoặc mật khẩu không đúng vui lòng thử lại !')
-    }
+    axios.post('https://lap-center.herokuapp.com/api/login', {
+      username: username,
+      password: password
+    })
+    .then(function (response) {
+      console.log(response);
+      history.push('/')
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert("Sai ten dang nhap hoac mat khau!!!")
+    });
   }
 
 
