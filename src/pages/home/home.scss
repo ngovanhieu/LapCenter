@@ -1,11 +1,16 @@
 .home-container {
-  display: flex;
-  justify-content: space-between;
+  .filter {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    // justify-content: space-around;
+    padding-top: 85px;
+    padding-bottom: 5px;
+    flex-wrap: wrap;
 
-  .menuLeft {
-    width: 15%;
-    padding-top: 80px;
-    padding-left: 10px;
+    .search {
+      margin-left: 5px;
+    }
 
     .selectForm {
       display: flex;
@@ -16,8 +21,23 @@
     .selectBox {
       padding: 5px;
       margin: 0 0 0 5px;
+      width: 150px;
+      height: 36px;
+      margin-top: -9px;
     }
   }
+
+  .container-body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menuLeft {
+    width: 15%;
+    padding-top: 80px;
+    padding-left: 10px;
+  }
+
   .menuRight {
     width: 15%;
     padding-top: 80px;
@@ -27,41 +47,16 @@
     flex-wrap: wrap;
     flex: start;
     display: flex;
-    margin-top: 80px !important ;
-    width: 70%;
+    padding-top: 180px;
+    width: 80%;
+    z-index: 1;
+    border: none !important;
 
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      border-radius: 5px;
-      cursor: pointer;
-      padding: 25px;
-      margin: 10px auto;
-      min-width: 250px;
-      max-width: 250px;
-      height: 400px;
-      background-color: #fff;
-      box-shadow: 5px 5px 25px rgb(184, 183, 183);
-
-      .image {
-        width: 200px !important;
-        height: 160px !important;
-      }
-
-      .name {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .btn-success {
-        background-color: rgb(41, 171, 5);
-        color: beige;
-        padding: 10px 0;
-        outline: none;
-        border: none;
-        cursor: pointer;
-      }
+    .noResults {
+      width: 100%;
     }
+  }
+  .Paginator{
+    text-align: center !important;
   }
 }
