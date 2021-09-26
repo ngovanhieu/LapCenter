@@ -1,0 +1,124 @@
+.detail-segment-container {
+    margin: 0 !important;
+    padding-bottom: 100px !important ;
+  }
+  
+  .detail-product-name {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 85px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .detail-status {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+  }
+  
+  .detail-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  
+    .detail-left {
+      width: 500px;
+  
+      .detail-image {
+        width: 90%;
+        height: auto;
+      }
+  
+      .detail-list-images {
+        text-align: center;
+        // display: flex;
+        // flex-wrap: wrap;
+  
+        .detail-image-small {
+          padding: 5px;
+          border: 1px solid gray;
+          width: 60px;
+          height: 50px;
+          margin-left: 4px;
+        }
+      }
+    }
+  
+    .detail-main {
+      width: 300px;
+      margin-top: 10px;
+  
+      span {
+        color: rgb(226, 3, 3);
+        font-size: 24px;
+        font-weight: 700;
+      }
+  
+      .detail-discount {
+        width: 100%;
+  
+        .discount-top {
+          background-color: rgb(45, 174, 20);
+          padding: 10px 5px;
+          color: white;
+          font-size: 14px;
+          font-weight: 600;
+        }
+  
+        .discount-content {
+          padding: 10px 5px;
+          border: 0.5px dotted gray;
+        }
+      }
+  
+      .detail-buy {
+        margin: 20px 0;
+        text-align: center;
+  
+        p {
+          font-size: 18px;
+          font-weight: 600;
+          margin-top: 20px;
+  
+          a {
+            color: #db2828;
+          }
+        }
+      }
+    }
+  
+    .detail-right {
+      // width: 30%;
+      margin-top: 10px;
+      padding-left: 20px;
+  
+      span {
+        font-size: 14px;
+        font-weight: 600;
+      }
+  
+      ul li {
+        margin-top: 5px;
+      }
+    }
+  }
+  
+  .specifications {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .same-product {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 0;
+  
+    h3 {
+      color: #db2828;
+    }
+  }

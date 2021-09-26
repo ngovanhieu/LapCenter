@@ -7,6 +7,7 @@ import introduce from './pages/introduce/introduce';
 import Login from './pages/login/login';
 import NotFoundPage from './pages/notFound/notFound';
 import Register from './pages/register/register';
+import ProductDetail from './pages/productDetail/productDetail';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/introduce' exact component={introduce}/>
         <Route path='/login' exact component={Login}/>
         <Route path='/register' exact component={Register}/>
+        <Route path='/productDetail' exact component={ProductDetail}/>
         <Route  component={NotFoundPage}/>
 
       </Switch>
