@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/navbar";
 import Card from "../../components/card/card";
 import product from "../../assets/data/product";
 import { Icon, Input, Segment, Pagination } from "semantic-ui-react";
+import Footer from "../../components/footer/footer";
 const axios = require("axios");
 
 function Home() {
@@ -154,6 +155,9 @@ function Home() {
           totalPages={totalPage}
           onPageChange={handlePaginationChange}
         />
+      </div>
+      <div>
+        <Footer/>
       </div>
     </div>
   );

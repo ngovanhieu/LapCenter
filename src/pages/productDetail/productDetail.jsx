@@ -7,6 +7,7 @@ import axios  from 'axios' ;
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CardItem from "../../components/cardItem/cardItem";
+import Footer from "../../components/footer/footer";
 
 const responsive = {
   superLargeDesktop: {
@@ -195,6 +196,7 @@ const ProductDetail = () => {
           </Carousel>
         </div>
       </Segment>
+      <Footer/>
     </div>
   );
 };

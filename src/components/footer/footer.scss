@@ -1,0 +1,38 @@
+.footer {
+  background-color: #bdc3c7;
+  width: 100%;
+  height: 270px;
+
+  display: flex;
+  color: #000;
+  & ul {
+    margin-top: -10px;
+    line-height: 25px;
+  }
+  &li {
+      margin: 2x0px !important ;
+  }
+}
+.information {
+  margin: 70px 100px;
+  width: 300px;
+}
+.branch_1 {
+  margin: 70px 100px;
+  width: 500px;
+
+}
+.image_ft{
+    margin: 70px 150px;
+}
+.image_icon{
+    margin: 20px 30px;
+    width: 200px;
+    height: 30px;
+}
+i{
+    margin-top: 170px;
+    margin-left: 100px;
+    width: 200px;
+    height: 100px;
+}
