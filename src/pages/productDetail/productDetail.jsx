@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import { Segment, Button, Table } from "semantic-ui-react";
 import "./productDetail.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation , useHistory } from "react-router-dom";
 import axios  from 'axios' ;
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CardItem from "../../components/cardItem/cardItem";
 import Footer from "../../components/footer/footer";
+
+
 
 const responsive = {
   superLargeDesktop: {
@@ -37,6 +39,7 @@ const ProductDetail = () => {
   const location = useLocation();
   const id = location.pathname?.split('product/')[1];
   // const id = location.pathname?.replace('product/', '');
+  const history = useHistory();
   
   
   useEffect(()=>{
@@ -81,6 +84,12 @@ const ProductDetail = () => {
   const onChooseImage = (image) => {
     setImage(image);
   }
+
+  const movetobuy = () => {
+    history.push(`/buy/${id}`)  
+  }
+
+
   return (
     <div>
       <Navbar />
@@ -116,7 +125,7 @@ const ProductDetail = () => {
               <div className="discount-content">something</div>
             </div>
             <div className="detail-buy">
-              <Button color="red">MUA NGAY</Button>
+              <Button color="red" onClick={movetobuy} >MUA NGAY</Button>
               <p>
                 GỌI NGAY <a href="tel:+84969442510"> 078 731 4023 </a> ĐỂ GIỮ
                 HÀNG
@@ -140,6 +149,7 @@ const ProductDetail = () => {
                 <li>172 ABC, Thanh Khê, TP. Đà Nẵng</li>
               </ul>
             </div>
+
           </div>
         </div>
         <div className="specifications">

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import App from './App';
 import Footer from './components/footer/footer';
+import Buy from './components/buy/buy'
 
 
 ReactDOM.render(
