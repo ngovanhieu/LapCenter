@@ -25,16 +25,16 @@ const Footer = () => {
       <div className="image_ft">
         <h4> Liên Lạc </h4>
         <div className="image_icon">
-          <a href=" https://www.youtube.com/ ">
+          <a href=" https://www.facebook.com/nhom.b.muoi/ ">
             <Button circular color="facebook" icon="facebook" />{" "}
           </a>
           <a href="https://www.youtube.com/  ">
             <Button circular color="twitter" icon="twitter" />{" "}
           </a>
-          <a href=" https://www.youtube.com/ ">
-            <Button circular color="linkedin" icon="linkedin" />{" "}
+          <a href=" https://www.instagram.com/nngovanhieu/ ">
+            <Button circular color="instagram" icon="instagram" />{" "}
           </a>
-          <a href=" https://www.youtube.com/ ">
+          <a href="https://mail.google.com/mail/u/1/#inbox ">
             <Button circular color="google plus" icon="google plus" />{" "}
           </a>
         </div>
