@@ -1,26 +1,51 @@
+.icon-home {
+  position: absolute;
+  z-index: 1;
+  color: aliceblue;
+  text-decoration: underline;
+  font-size: 16px;
+  margin: 10px 0 0 10px !important;
+}
+
 .login-container {
-    padding-top: 120px;
-  
-    .login-form {
-      width: 60%;
+  height: auto;
+  background: rgb(110, 177, 241);
+  background: linear-gradient(
+    90deg,
+    rgba(110, 177, 241, 1) 0%,
+    rgba(9, 9, 121, 1) 50%,
+    rgba(14, 55, 142, 1) 65%,
+    rgba(27, 163, 190, 1) 100%
+  );
+  height: 100%;
+  position: absolute;
+  left: 0;
+  padding-top: 150px;
+  width: 100%;
+  overflow: hidden;
+
+  .login-form {
+    width: 50%;
+    min-width: 370px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 70px;
+    border-radius: 10px;
+
+    .login-content {
+      width: 90%;
       margin: 0 auto;
-      background-color: rgb(29, 186, 186);
-      padding: 70px;
-  
-      .login-content {
-        width: 40%;
-        margin: 0 auto;
-  
-        .inputText {
-          margin: 5px 0 10px 0;
-          width: 100%;
-        }
-      }
-  
-      .register-text {
-        color: rgb(95, 3, 64);
-        cursor: pointer;
-        text-decoration: underline;
+
+      .inputText {
+        margin: 5px 0 10px 0;
+        width: 100%;
       }
     }
+
+    .register-text {
+      color: rgb(95, 3, 64);
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
+}
