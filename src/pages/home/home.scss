@@ -26,6 +26,16 @@
       margin-top: -9px;
     }
   }
+  .currentUser {
+    top: 90px;
+    right: 20px;
+    position: absolute;
+
+    span {
+      font-weight: 700;
+      color: #0bb102;
+    }
+  }
 
   .container-body {
     display: flex;

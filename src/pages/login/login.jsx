@@ -36,7 +36,12 @@ const Login = () => {
     .then(function (response) {
       console.log(response);
       setLoading(false);
-      history.push('/')
+      history.push('/');
+      localStorage.setItem('customerName', response.data.userName);
+      localStorage.setItem('userId', response.data.userId);
+
+      
+
     })
     .catch(function (error) {
       console.log(error);
