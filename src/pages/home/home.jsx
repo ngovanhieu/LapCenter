@@ -5,7 +5,8 @@ import Card from "../../components/card/card";
 import product from "../../assets/data/product";
 import { Icon, Input, Segment, Pagination } from "semantic-ui-react";
 import Footer from "../../components/footer/footer";
-const axios = require("axios");
+import HistoryAndCart from "../../components/historyAndCart/historyAndCart";
+import axios from "axios";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -15,6 +16,8 @@ function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const currentUser = localStorage.getItem('customerName');
 
   const fetchData = async (url) => {
     
@@ -128,6 +131,9 @@ function Home() {
           </select>
         </div>
       </div>
+      <div className="currentUser">{currentUser && <p>Chào mừng, <span>{currentUser}</span></p>}</div>
+      {currentUser && <HistoryAndCart/>}
+      {/* <div className="currentUser">Chào mừng, <span> {localStorage.getItem('customerName')} </span></div> */}
       <div className="container-body">
         <div className="menuLeft"></div>
         <Segment loading={loading} className="product">

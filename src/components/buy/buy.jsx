@@ -30,7 +30,8 @@ const Buy = () => {
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
+  const currentUser = localStorage.getItem("customerName");
 
   const onChangeInfo = (event, field) => {
     const value = event.target.value;
@@ -90,35 +91,56 @@ const Buy = () => {
     }
   };
 
-  const  onOrder = () =>{
+  const onOrder = () => {
     setLoading(true);
-    setOpen(false)
-     axios.post('https://lap-center.herokuapp.com/api/order/addOrder', {
-      customerName : customerName ,
-    email: email, 
-    phone: phoneNumber,
-    address: address,
-    productName: data.name,
-    productBrand: data.brand,
-    quantity: quantity,
-    orderStatus: 1
-    })
-    .then(function (response) {
-      console.log(response);
-      setLoading(false);
-      setOpenDialog(true);
-      setMessage('Đặt hàng thành công !!!');
-    })
-    .catch(function (error) {
-      console.log(error);
-      setLoading(false);
-      setOpenDialog(true)
-      setMessage('Đặt hàng thất bại, vui lòng thử lại sau !!!')
-
-
-
-    });
-  }
+    setOpen(false);
+    axios
+      .post(
+        "https://lap-center.herokuapp.com/api/order/addOrder",
+        {
+          customerName: customerName,
+          email: email,
+          phone: phoneNumber,
+          address: address,
+          productName: data.name,
+          productBrand: data.brand,
+          quantity: quantity,
+          orderStatus: 1,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        currentUser && onAddToHistory();
+        setLoading(false);
+        setOpenDialog(true);
+        setMessage("Đặt hàng thành công !!!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+        setOpenDialog(true);
+        setMessage("Đặt hàng thất bại, vui lòng thử lại sau !!!");
+      });
+  };
+  const onAddToHistory = () => {
+    axios
+      .post("https://lap-center.herokuapp.com/api/history/addProductToHistory", {
+        userId: localStorage.getItem("userId"),
+        phone: phoneNumber,
+        address: address,
+        productName: data.name,
+        productBrand: data.brand,
+        quantity: quantity,
+        orderStatus: 1,
+      })
+      .then(function (response) {
+        console.log(response);
+        console("hihi");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -199,20 +221,22 @@ const Buy = () => {
                   onOpen={() => setOpen(true)}
                   open={open}
                   trigger={
-                    <Button color="red" disabled={checkInfo} className="btn-order">
-                  Đặt hàng
-                </Button>
+                    <Button
+                      color="red"
+                      disabled={checkInfo}
+                      className="btn-order"
+                    >
+                      Đặt hàng
+                    </Button>
                   }
                 >
-                  <Modal.Header><h2 className="txt-check">Xác nhận thông tin</h2> </Modal.Header>
+                  <Modal.Header>
+                    <h2 className="txt-check">Xác nhận thông tin</h2>{" "}
+                  </Modal.Header>
                   <Modal.Content image>
-                    <Image
-                      size="medium"
-                      src={image}
-                      wrapped
-                    />
+                    <Image size="medium" src={image} wrapped />
                     <Modal.Description>
-                    <h5 className="txt-title">Thông tin sản phẩm</h5>
+                      <h5 className="txt-title">Thông tin sản phẩm</h5>
                       <div className="info-check">
                         <p>Tên sản phẩm:</p>
                         <span>{data.name}</span>

@@ -6,10 +6,14 @@ import { useHistory } from "react-router-dom";
 
 const Navbar = (props) => {
   const history = useHistory();
+  const currentUser = localStorage.getItem('customerName');
+
 
   const backToHome = () => {
     history.push("/");
   }
+
+
 
   return (
     <div className="navbar">
@@ -26,9 +30,16 @@ const Navbar = (props) => {
         <Link className="option" to="/contact">
           LIÊN HỆ
         </Link>
-        <Link className="option" to="/login">
-          ĐĂNG NHẬP
-        </Link>
+        {currentUser ?
+        <Link className="option" to="/" onClick ={() => localStorage.clear() } >
+          ĐĂNG XUẤT
+        </Link> :
+        <Link className="option" to="/login"  >
+        ĐĂNG NHẬP
+      </Link>
+
+        
+        }
       </div>
     </div>
   );
