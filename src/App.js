@@ -10,6 +10,7 @@ import Register from './pages/register/register';
 import ProductDetail from './pages/productDetail/productDetail';
 import Buy from './components/buy/buy';
 import History from './pages/history/history';
+import Cart from './pages/cart/cart';
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
         <Route path='/product/:id' exact component={ProductDetail}/>
         <Route path='/buy/:id'component={Buy}/>
         <Route path='/history/:userId'component={History}/>
+        <Route path='/cart/:userId'component={Cart}/>
+
+        
         <Route  component={NotFoundPage}/>
 
       </Switch>
