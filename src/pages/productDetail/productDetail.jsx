@@ -1,94 +1,125 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
-import { Segment, Button, Table } from "semantic-ui-react";
+import { Segment, Button, Table, Modal } from "semantic-ui-react";
 import "./productDetail.scss";
-import { useLocation , useHistory } from "react-router-dom";
-import axios  from 'axios' ;
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { useLocation, useHistory } from "react-router-dom";
+import axios from "axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import CardItem from "../../components/cardItem/cardItem";
 import Footer from "../../components/footer/footer";
-
-
 
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 4
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
+    items: 1,
+  },
 };
 
 const ProductDetail = () => {
   const [data, setData] = useState([]);
   const [sameProduct, setSameProduct] = useState([]);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const id = location.pathname?.split('product/')[1];
+  const id = location.pathname?.split("product/")[1];
   // const id = location.pathname?.replace('product/', '');
   const history = useHistory();
-  
-  
-  useEffect(()=>{
+  const [openDialog, setOpenDialog] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const currentUser = localStorage.getItem("customerName");
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     fetchData();
-    
-  }, [location] )
+  }, [location]);
 
   const fetchData = () => {
     setLoading(true);
     let url = `https://lap-center.herokuapp.com/api/product/getProductById/${id}`;
-    axios.get(url)
+    axios
+      .get(url)
       .then(function (res) {
         const data = res.data.response;
         setData(data);
-        console.log('data detail: ',data);
-        console.log('data detail: ',data.images[0]);
+        console.log("data detail: ", data);
+        console.log("data detail: ", data.images[0]);
         setImage(data.images[0]);
         setLoading(false);
-        
+
         fecthSameProduct(data.brand);
       })
       .catch(function (error) {
-        console.log('error: ', error);
+        console.log("error: ", error);
         setLoading(false);
-      })
-  }
+      });
+  };
   const fecthSameProduct = (brand) => {
     // fetch API for get more product for this brand
     setLoading(true);
-    axios.get(`https://lap-center.herokuapp.com/api/product?productBrand=${brand}&pageSize=10&pageNumber=1`)
+    axios
+      .get(
+        `https://lap-center.herokuapp.com/api/product?productBrand=${brand}&pageSize=10&pageNumber=1`
+      )
       .then(function (response) {
-        console.log('product more: ', response.data.products);
+        console.log("product more: ", response.data.products);
         setSameProduct(response.data.products);
         setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
         setLoading(false);
-      })
-    }
+      });
+  };
   const onChooseImage = (image) => {
     setImage(image);
-  }
+  };
 
   const movetobuy = () => {
-    history.push(`/buy/${id}`)  
-  }
+    history.push(`/buy/${id}`);
+  };
 
+  const onAddToCart = () => {
+    setLoading(true);
+    axios
+      .post("https://lap-center.herokuapp.com/api/cart/addProductToCart", {
+        userId: localStorage.getItem("userId"),
+        productId: data._id,
+        productName: data.name,
+        productBrand: data.brand,
+        image: image,
+        price: data.price,
+      })
+      .then(function (response) {
+        console.log(response);
+        setLoading(false);
+        setOpenDialog(true);
+        setMessage("Bạn đã thêm sản phẩm vào giỏ hàng thành công !!!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+        setOpenDialog(true);
+
+        setMessage(
+          "Bạn đã thêm sản phẩm vào giỏ hàng không thành công, Vui lòng thử lại !!!"
+        );
+      });
+  };
 
   return (
     <div>
@@ -103,14 +134,15 @@ const ProductDetail = () => {
         <hr style={{ width: "80%" }} />
         <div className="detail-container">
           <div className="detail-left">
-          <img
-                      className="detail-image"
-                      src={image}
-                      alt={image}
-                    />
+            <img className="detail-image" src={image} alt={image} />
             <div className="detail-list-images">
               {data?.images?.map((item) => (
-                <img className="detail-image-small" src={item} alt="" onClick={() => onChooseImage(item)} />
+                <img
+                  className="detail-image-small"
+                  src={item}
+                  alt=""
+                  onClick={() => onChooseImage(item)}
+                />
               ))}
             </div>
           </div>
@@ -125,7 +157,15 @@ const ProductDetail = () => {
               <div className="discount-content">something</div>
             </div>
             <div className="detail-buy">
-              <Button color="red" onClick={movetobuy} >MUA NGAY</Button>
+              <Button color="red" onClick={movetobuy}>
+                MUA NGAY
+              </Button>
+              {currentUser && (
+                <Button color="green" className="btnCart" onClick={onAddToCart}>
+                  THÊM VÀO GIỎ HÀNG
+                </Button>
+              )}
+
               <p>
                 GỌI NGAY <a href="tel:+84969442510"> 078 731 4023 </a> ĐỂ GIỮ
                 HÀNG
@@ -149,7 +189,6 @@ const ProductDetail = () => {
                 <li>172 ABC, Thanh Khê, TP. Đà Nẵng</li>
               </ul>
             </div>
-
           </div>
         </div>
         <div className="specifications">
@@ -185,10 +224,9 @@ const ProductDetail = () => {
                   <Table.Cell>{data.card}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                <Table.Cell>Màn hình</Table.Cell>
-                <Table.Cell>{data.monitor}</Table.Cell>
-              </Table.Row>
-
+                  <Table.Cell>Màn hình</Table.Cell>
+                  <Table.Cell>{data.monitor}</Table.Cell>
+                </Table.Row>
               </Table.Body>
             </Table>
           </div>
@@ -196,17 +234,30 @@ const ProductDetail = () => {
         <div className="same-product">
           <h3>Sản phẩm cùng thương hiệu</h3>
           <hr />
-          <Carousel 
-            responsive={responsive}
-            showDots={true}
-          >
+          <Carousel responsive={responsive} showDots={true}>
             {sameProduct.map((item) => (
-              <CardItem product={item}/>
+              <CardItem product={item} />
             ))}
           </Carousel>
         </div>
       </Segment>
-      <Footer/>
+      <Footer />
+      <Modal
+        onClose={() => setOpenDialog(false)}
+        onOpen={() => setOpenDialog(true)}
+        open={openDialog}
+        size="mini"
+      >
+        <Modal.Header>
+          <h4 className="txt-check">Thông báo</h4>
+        </Modal.Header>
+        <Modal.Content image>
+          <p>{message}</p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={() => setOpenDialog(false)}>Đóng</Button>
+        </Modal.Actions>
+      </Modal>
     </div>
   );
 };
