@@ -28,29 +28,32 @@ const Login = () => {
   }
 
   const onLogin = () => {
-    setLoading(true);
-    axios.post('https://lap-center.herokuapp.com/api/login', {
-      username: username,
-      password: password
-    })
-    .then(function (response) {
-      console.log(response);
-      setLoading(false);
-      history.push('/');
-      localStorage.setItem('customerName', response.data.userName);
-      localStorage.setItem('userId', response.data.userId);
-      localStorage.setItem('isAdmin', response.data.isAdmin);
-
-
+    // setLoading(true);
+    
+    axios
+      .post("https://lap-center.herokuapp.com/api/login", {
+        username: username,
+        password: password,
+      })
+      .then(function (response) {
+        history.push("/LapCenter");
+        // setLoading(false);
+        // localStorage.setItem('username', "tung");
+        localStorage.setItem("customerName", response.data.userName);
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("isAdmin", response.data.isAdmin);
+      })
+      .catch(function (error) {
+        if(username === "" || password === ""){
+          alert("không được bỏ trống user or passwork ")
+          // setLoading(false);
+        } else {
+          alert("Sai rồi mật khẩu hay user r kia !!!");
+          // setLoading(false);
+        }      
+      });
       
-
-    })
-    .catch(function (error) {
-      console.log(error);
-      setLoading(false);
-      alert("Sai ten dang nhap hoac mat khau!!!")
-    });
-  }
+  };
 
   let checkInfo = true;
   if (!username ||  !password  ) checkInfo = true;
