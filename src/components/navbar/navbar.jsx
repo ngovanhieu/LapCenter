@@ -19,7 +19,7 @@ const Navbar = (props) => {
         <img className="logo" src={logo} onClick={backToHome} />
       </p>
       <div className="options">
-        <Link className="option" to="/">
+        <Link className="option"  onClick={() => history.push("/LapCenter") }  to="/LapCenter">
           TRANG CHỦ
         </Link>
         <Link className="option" to="/introduce">
@@ -29,7 +29,7 @@ const Navbar = (props) => {
           LIÊN HỆ
         </Link>
         {currentUser ? (
-          <Link className="option" to="/" onClick={() => localStorage.clear()}>
+          <Link className="option" to="/LapCenter" onClick={() => localStorage.clear()}>
             ĐĂNG XUẤT
           </Link>
         ) : (
@@ -38,7 +38,7 @@ const Navbar = (props) => {
           </Link>
         )}
         {isAdmin === "true" && (
-          <Link className="option" to="/admin/order">
+          <Link className="option" onClick={() => history.push("/LapCenter") } to="/admin/order">
             QUẢN LÝ ĐƠN HÀNG
           </Link>
         )}

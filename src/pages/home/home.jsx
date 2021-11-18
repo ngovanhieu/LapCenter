@@ -8,6 +8,7 @@ import Footer from "../../components/footer/footer";
 import HistoryAndCart from "../../components/historyAndCart/historyAndCart";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
+import { useLocation } from "react-router-dom"
 
 const responsive = {
   superLargeDesktop: {
@@ -38,6 +39,9 @@ function Home() {
   const [totalPage, setTotalPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
+  const location = useLocation ()
+
+  
 
 
 
@@ -78,7 +82,12 @@ function Home() {
   useEffect(async () => {
     let url = `https://lap-center.herokuapp.com/api/product`;
     await fetchData(url);
-  }, []);
+    setIsSearch(false);
+    setSearch("");
+    setBrand("");
+    setPrice("");
+
+  }, [location]);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);

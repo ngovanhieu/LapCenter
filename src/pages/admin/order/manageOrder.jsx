@@ -12,7 +12,7 @@ import {
 } from "semantic-ui-react";
 import "./manageOrder.scss";
 import axios from "axios";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 const ManageOrder = () => {
   const [data, setData] = useState([]);
@@ -32,6 +32,7 @@ const ManageOrder = () => {
   const [isUserRole, setIsUserRole] = useState([]);
   const isAdmin = localStorage.getItem("isAdmin");
   const history = useHistory();
+  const location = useLocation ()
 
 
 
@@ -184,7 +185,7 @@ const ManageOrder = () => {
     } else {
       fetchData();
     } 
-  }, []);
+  }, [location]);
   return (
     <div>
       <Navbar />

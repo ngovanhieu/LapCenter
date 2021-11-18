@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact component={Home}/>
+        <Route path='/LapCenter' exact component={Home}/>
         <Route path='/contact' exact component={Contact}/>
         <Route path='/introduce' exact component={introduce}/>
         <Route path='/login' exact component={Login}/>
